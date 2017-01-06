@@ -8,7 +8,7 @@ to compete with bigger site generators like jekyll or hugo.
 
 Just clone the repo and run `yarn install`.
 
-$$ Usage
+## Usage
 
 In `index.js` you'll see a few arrays defined.  These are individual pages and their template files.  Below that is a 
 const array of objects called `pages`.  Each object has a filename (String) and a files (Array).  You can tweek these to create
