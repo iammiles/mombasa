@@ -1,0 +1,16 @@
+{
+  "name": "mombasa",
+  "version": "0.0.1",
+  "description": "A Tiny Template Generator",
+  "main": "src/index.js",
+  "author": "Miles <iammiles@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "marked": "^0.3.6"
+  },
+  "devDependencies": {
+    "eslint": "^3.12.2",
+    "eslint-config-airbnb-base": "^11.0.0",
+    "eslint-plugin-import": "^2.2.0"
+  }
+}

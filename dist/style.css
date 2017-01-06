@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:300|Roboto+Mono:300');
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #FFF;
+  font-family: 'Roboto Mono', monospace;
+  text-rendering: optimizeLegibility;
+}
+
+.splash {
+  position: absolute;
+  right: 7%;
+  bottom: 7%;
+  text-align: right;
+  font-size: 40px;
+  color: #333;
+}
+
+#title {
+  margin-top: -10px;
+}
+
+.sub-text {
+  opacity: 0.3;
+}
+
+.lato {
+  font-family: 'Lato', sans-serif;
+}
+
+a {
+  text-transform: uppercase;
+  color: #3598d6;
+  text-decoration: none;
+}
+
+.modal {
+  display: -webkit-flex;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column nowrap;
+  background-color: #333;
+  opacity: 0;
+  z-index: -999;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  transition: opacity 1s ease,z-index 0.01s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.modal-row {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: column nowrap;
+  flex-flow: column nowrap;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  align-items: flex-start;
+
+}
+.menu-close {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.menu > a:before {
+  content: '+';
+  padding-right: 10px;
+}
+
+.modal > a:before {
+  content: '-';
+  padding-right: 10px;
+}
+
+
+.title-text {
+  text-align: center;
+}
+
+.content {
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content-text {
+  width: 50%;
+}
+
+@media only screen and (max-width: 868px) {
+  .splash {
+    text-align: left;
+    position: absolute;
+    top: 25px;
+    left: 25px;
+    font-size: 20px;
+  }
+  .content-text {
+    width: 75%;
+  }
+}
+
+@media only screen and (max-width: 468px) {
+  .splash {
+    font-size: 18px;
+  }
+  .content-text {
+    width: 90%;
+  }
+}
