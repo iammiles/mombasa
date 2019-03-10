@@ -6,26 +6,49 @@ const BUILD_DIR = './dist/';
 const homepage = [
   'header.html',
   'navigation.html',
-  'splash.html',
-  'footer.html',
+  'body_about.html',
+  'footer.html'
 ];
 
-const about = [
+const recomendations = [
   'header.html',
   'navigation.html',
-  'about.html',
-  'footer.html',
+  'body_recommendations.html',
+  'footer.html'
 ];
+
+const projects = [
+  'header.html',
+  'navigation.html',
+  'body_projects.html',
+  'footer.html'
+];
+
+const resume = ['header.html', 'resume.html', 'footer.html'];
+
+const resumeDetails = ['header.html', 'resumelong.html', 'footer.html'];
 
 const pages = [
   {
     filename: 'index.html',
-    files: homepage,
+    files: homepage
   },
   {
-    filename: 'about.html',
-    files: about,
+    filename: 'projects.html',
+    files: projects
   },
+  {
+    filename: 'recommendations.html',
+    files: recomendations
+  },
+  {
+    filename: 'resume.html',
+    files: resume
+  },
+  {
+    filename: 'resumelong.html',
+    files: resumeDetails
+  }
 ];
 
 /**
@@ -35,8 +58,10 @@ const pages = [
  * @param {Array} erroredFiles
  * @returns {Boolean} error
  */
-const templateValidation = ((filesToCheck, error = false) => {
-  if (filesToCheck.length === 0) { return error; }
+const templateValidation = (filesToCheck, error = false) => {
+  if (filesToCheck.length === 0) {
+    return error;
+  }
   const [first, ...rest] = filesToCheck;
   if (!fs.existsSync(TEMPLATE_DIR + first)) {
     console.warn(`Could not find file: ${first} in ${TEMPLATE_DIR}!`);
@@ -45,7 +70,7 @@ const templateValidation = ((filesToCheck, error = false) => {
     error = true;
   }
   return templateValidation(rest, error);
-});
+};
 
 /**
  * Given an Array of filenames, synchronously read them through them by mapping over
@@ -53,9 +78,10 @@ const templateValidation = ((filesToCheck, error = false) => {
  * @param {Array} files
  * @returns {String}
  */
-const createHTML = (files => files
-  .map(file => fs.readFileSync(TEMPLATE_DIR + file, 'utf-8'))
-  .reduce((a, b) => a + b));
+const createHTML = files =>
+  files
+    .map(file => fs.readFileSync(TEMPLATE_DIR + file, 'utf-8'))
+    .reduce((a, b) => a + b);
 
 /**
  * Iterate over all the pages to create and if there are no errors
@@ -63,11 +89,11 @@ const createHTML = (files => files
  * @param {Array} <Objects> pagesToCreate
  * @returns HTML file
  */
-const createSite = ((pagesToCreate) => {
-  pagesToCreate.forEach((page) => {
+const createSite = pagesToCreate => {
+  pagesToCreate.forEach(page => {
     const errors = templateValidation(page.files);
     if (!errors) {
-      fs.writeFile(BUILD_DIR + page.filename, createHTML(page.files), (err) => {
+      fs.writeFile(BUILD_DIR + page.filename, createHTML(page.files), err => {
         if (err) throw err;
         console.log(`Succesfully created ${page.filename} in ${BUILD_DIR}.`);
       });
@@ -75,6 +101,6 @@ const createSite = ((pagesToCreate) => {
       console.error(`Failed to build ${page.filename}!`);
     }
   });
-});
+};
 
 createSite(pages);
